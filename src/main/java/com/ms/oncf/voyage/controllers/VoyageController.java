@@ -14,6 +14,8 @@ import com.ms.oncf.voyage.services.TrajetProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/voyages")
 public class VoyageController {
@@ -21,7 +23,13 @@ public class VoyageController {
     @Autowired
     private VoyageRepository voyageRepository;
 
-    @GetMapping()
+    @GetMapping
+    public List<Voyage> findAllVoyages()
+    {
+        return voyageRepository.findAll();
+    }
+
+    @GetMapping("/all")
     public VoyagesList findAll()
     {
         VoyagesList voyages = new VoyagesList();
